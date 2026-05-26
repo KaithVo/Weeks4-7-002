@@ -11,6 +11,8 @@ public class Trainer : MonoBehaviour
     public List<SpriteRenderer> uncaughtCreatures;
     public List<SpriteRenderer> caughtCreatures;
 
+    public Hider creatureHider;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,6 +60,7 @@ public class Trainer : MonoBehaviour
             //Debug.Log("Is creature caught["+isCreatureCaught.ToString()+"]");
             if (!isCreatureCaught)
             {
+                creatureHider.Hide();
                 caughtCreatures.Add(creatureRenderer);
             }
 
