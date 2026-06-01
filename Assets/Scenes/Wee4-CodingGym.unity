@@ -346,7 +346,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e859bc57a6843e79045a0792649d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColouredShaped
+  sprites:
+  - {fileID: -887230987, guid: 529af4bdebfb57844ac40648c60dbc05, type: 3}
+  - {fileID: -5064401156898091283, guid: d0af11330ed425845acf5dac8d1b8b5e, type: 3}
+  - {fileID: -8568042794190644651, guid: 85b4aa8c28bf1ac4ba529d37dd1fb803, type: 3}
   spriteRenderer: {fileID: 246436850}
+  spriteIndex: 0
   t: 4
 --- !u!212 &246436850
 SpriteRenderer:
