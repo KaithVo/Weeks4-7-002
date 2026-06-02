@@ -14,27 +14,35 @@ public class ColouredShaped : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        PickSprite();
 
-        if( sprites.Count > 0)
-        {
-            //use that to set the sprite
-            spriteRenderer.sprite = sprites[spriteIndex]; 
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Keyboard.current.anyKey.wasPressedThisFrame)
+        {
+            if (sprites.Count > 0)
+            {
+                //use that to set the sprite
+                PickSprite();
+            }
+        }
+
         t += Time.deltaTime;
         spriteRenderer.color = Random.ColorHSV(); 
 
         //creat condition if anykey is down
-
-        if (Input.anyKeyDown)
-        {
-            spriteIndex +=1 ; 
-        }
+    }
 
 
+    void PickSprite()
+    {
+        //pick a random index from the list of sprites
+        spriteIndex = Random.Range(0, sprites.Count);
+        //use that to set the sprite
+        spriteRenderer.sprite = sprites[spriteIndex];
+       
     }
 }
