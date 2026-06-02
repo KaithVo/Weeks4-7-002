@@ -34,4 +34,3 @@ public class Spawner : MonoBehaviour
             //Quaternion zeroRotation = Quaternion.identity;
         }
     }
-}
