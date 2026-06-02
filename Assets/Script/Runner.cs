@@ -2,17 +2,33 @@ using UnityEngine;
 
 public class Runner : MonoBehaviour
 {
+    public float speed;
 
-    public float speed = 5f;
+    bool isMoving = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += speed * Time.deltaTime * Vector3.right;
+        if (isMoving == true)
+        {
+            transform.position += Vector3.right * speed * Time.deltaTime;
+        }
+
+    }
+
+    public void OnMoveClick()
+    {
+        bool isMoving = true;
+    }
+
+    public void OnReverseClick()
+    {
+        bool isMoving = false;
     }
 }
