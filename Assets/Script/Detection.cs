@@ -30,7 +30,10 @@ public class Detection : MonoBehaviour
         }
         else
         {
-            descriptiontext.text = "";
+            if (descriptiontext.text == description)
+            {
+                descriptiontext.text = "";
+            }
         }
     }
 }
