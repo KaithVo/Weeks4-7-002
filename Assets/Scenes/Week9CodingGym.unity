@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e901c58d110b12479da60789083139b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Guard
-  player: {fileID: 0}
-  speed: 0
+  player: {fileID: 899045358}
+  speed: 5
 --- !u!212 &22736841
 SpriteRenderer:
   serializedVersion: 2
