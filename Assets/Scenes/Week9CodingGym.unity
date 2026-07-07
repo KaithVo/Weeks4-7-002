@@ -149,6 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e901c58d110b12479da60789083139b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Guard
+  player: {fileID: 0}
+  speed: 0
 --- !u!212 &22736841
 SpriteRenderer:
   serializedVersion: 2
@@ -434,6 +436,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92caf4ba3b3c6d3468255ac5a9b464b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Triggering
+  playerRenderer: {fileID: 899045357}
+  followingPlayer: {fileID: 22736840}
+  onTrapEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 22736840}
+        m_TargetAssemblyTypeName: Guard, Assembly-CSharp
+        m_MethodName: StartFollowing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTrapExited:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 22736840}
+        m_TargetAssemblyTypeName: Guard, Assembly-CSharp
+        m_MethodName: StopFollowing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1160332871
 GameObject:
   m_ObjectHideFlags: 0
