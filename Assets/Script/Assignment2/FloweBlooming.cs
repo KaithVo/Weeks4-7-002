@@ -15,18 +15,13 @@ public class FloweBlooming : MonoBehaviour
     private float startHeight;
 
     //time
-    private float t = 0;
     public AnimationCurve curve;
-
     public SpriteRenderer flowerRenderer;                       
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         flowerRenderer = GetComponent<SpriteRenderer>();
-
-        //start psotion
-        startHeight = transform.position.y;
 
         //start scale
         originalScale = transform.localScale;
@@ -36,12 +31,23 @@ public class FloweBlooming : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //move up
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        // Calculate how difference the flower has moved
+        float heightDifference = transform.position.y - startHeight;
 
-        t += Time.deltaTime * speed;
-        t = Mathf.Clamp01(t);
+        // Convert height into 0-1 value like the t/duration trick
+        float bloomProgress = heightDifference / bloomHeight;
 
-        transform.localScale = Vector3.Lerp(originalScale, IsExpanding, curve.Evaluate(t));
+        bloomProgress = Mathf.Clamp01(bloomProgress);
+
+        //if bloom over 1f then stop
+
+        if (bloomProgress < 1f)
+        {
+            // Move flower upward
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
+        }
+
+        // Grow flower smoothly
+        transform.localScale = Vector3.Lerp(originalScale, IsExpanding, curve.Evaluate(bloomProgress));
     }
 }
