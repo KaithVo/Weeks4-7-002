@@ -23,14 +23,14 @@ public class GardenManager : MonoBehaviour
 
     void Start()
     {
-        currentTime = maxTime;
+        UpdateUI();
 
     }
 
 
     void Update()
     {
-        SpawnWaterDrops();
+ 
     }
 
 
@@ -56,17 +56,17 @@ public class GardenManager : MonoBehaviour
             // Random X position between -3 and 3
             float randomX = Random.Range(-3f, 3f);
 
-            Vector3 spawnPosition = new Vector3( randomX, spawnHeight,0);
+            Vector3 spawnPosition = new Vector3(randomX, spawnHeight, 0);
 
 
-            GameObject drop = Instantiate(waterDropPrefab,spawnPosition,Quaternion.identity);
+            GameObject drop = Instantiate(waterDropPrefab, spawnPosition, Quaternion.identity);
 
         }
     }
 
     void UpdateUI()
     {
-  
+
 
         waterText.text = "Watered: " + waterCount;
     }
