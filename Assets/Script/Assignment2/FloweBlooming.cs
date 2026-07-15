@@ -6,10 +6,10 @@ public class FloweBlooming : MonoBehaviour
     public float speed = 0.5f; //blooming speed
     // Smallest and largest size
     public Vector3 originalScale;
-    public Vector3 IsExpanding = new Vector3(1.5f, 1.5f, 1.5f);
+    public Vector3 IsExpanding = new Vector3(0.5f, 0.5f, 0.5f);
 
     // Height where the flower reaches full bloom
-    public float bloomHeight = 2f;
+    public float bloomHeight = 0.1f;
 
     // Remember where it started
     private float startHeight;
@@ -41,7 +41,7 @@ public class FloweBlooming : MonoBehaviour
 
         //if bloom over 1f then stop
 
-        if (bloomProgress < 1f)
+        if (bloomProgress < 0.5f)
         {
             // Move flower upward
             transform.Translate(Vector3.up * speed * Time.deltaTime);

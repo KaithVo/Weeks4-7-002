@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class SunSpinner : MonoBehaviour
 {
     public Slider sunlightSlider;
+
+    public TMP_Text timeText;
 
     // Maximum rotation amount
     public float rotationAmount = 360f;
@@ -34,5 +38,17 @@ public class SunSpinner : MonoBehaviour
 
         // Apply rotation
         transform.eulerAngles = new Vector3( startRotation.x,startRotation.y,startRotation.z - zRotation);
+
+
+        //change text based on slider
+        if (sliderValue < 0.5f)
+        {
+            timeText.text = "Morning";
+        }
+        else
+        {
+            timeText.text = "Night";
+        }
+
     }
 }
