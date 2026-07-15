@@ -6,7 +6,7 @@ public class FloweBlooming : MonoBehaviour
     public float speed = 0.5f; //blooming speed
     // Smallest and largest size
     public Vector3 originalScale;
-    public Vector3 IsExpanding = new Vector3(0.5f, 0.5f, 0.5f);
+    public Vector3 IsExpanding = new Vector3(0.1f, 0.1f, 0.1f);
 
     // Height where the flower reaches full bloom
     public float bloomHeight = 0.1f;
@@ -24,7 +24,9 @@ public class FloweBlooming : MonoBehaviour
         flowerRenderer = GetComponent<SpriteRenderer>();
 
         //start scale
+        transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         originalScale = transform.localScale;
+        startHeight = transform.position.y;
 
     }
 

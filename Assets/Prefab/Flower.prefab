@@ -28,8 +28,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.89, y: -1.35, z: -1.26}
-  m_LocalScale: {x: 0.019589052, y: 0.019589052, z: 0.019589052}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106,28 +106,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FloweBlooming
   speed: 0.5
   originalScale: {x: 0, y: 0, z: 0}
-  IsExpanding: {x: 0.2, y: 0.2, z: 1.5}
+  IsExpanding: {x: 0.1, y: 0.1, z: 0.1}
   bloomHeight: 0.5
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.872449
-      outSlope: 0.872449
+      time: 0.0041656494
+      value: 0.9976196
+      inSlope: -0.58440447
+      outSlope: -0.58440447
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.46666667
+      outWeight: 0.18437886
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
+      time: 0.9748611
+      value: 0.0047505703
+      inSlope: -1.3768408
+      outSlope: -1.3768408
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.13221563
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

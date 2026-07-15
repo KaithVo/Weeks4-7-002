@@ -45,6 +45,9 @@ public class GardenManager : MonoBehaviour
 
     void Update()
     {
+        // Countdown timer
+        currentTime -= Time.deltaTime;
+
         if (currentTime <= 0)
         {
             currentTime = 0;
@@ -59,6 +62,7 @@ public class GardenManager : MonoBehaviour
                 UpdateUI();
             }
         }
+        timerText.text = "Time: " + currentTime.ToString("F1");
     }
 
 
@@ -72,6 +76,8 @@ public class GardenManager : MonoBehaviour
         growth += 10f;
         growth = Mathf.Clamp(growth, 0, 100);
 
+        // Reset timer
+        currentTime = maxTime;
 
         // Create water drops
         SpawnWaterDrops();
@@ -99,13 +105,20 @@ public class GardenManager : MonoBehaviour
     }
 
     void SpawnFlower()
+
     {
-        GameObject flower = Instantiate(flowerPrefab,flowerSpawnPoint.position,Quaternion.identity);
+        // Random flower position
+        float randomX = Random.Range(-5f, 5f);
+        float randomY = Random.Range(0f, -2f);
+
+        Vector3 randomPosition = new Vector3(randomX, randomY, -1f);
+
+
+        GameObject flower = Instantiate(flowerPrefab, randomPosition, Quaternion.identity);
 
         // Let FlowerBlooming handle the animation
         Destroy(flower, 8f);
     }
-
 
     //change  clider to control the groth also
     public void SliderChanged()
@@ -119,7 +132,7 @@ public class GardenManager : MonoBehaviour
         //using the same slide value of the sky background
         float sunlightAmount = sunlightSlider.value / sunlightSlider.maxValue;
 
-        float size = 0.5f * sunlightAmount;
+        float size = 0.5f + (growth /100f) * sunlightAmount;
 
         plant.localScale = Vector3.one * size;
     }
