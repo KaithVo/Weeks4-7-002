@@ -75,6 +75,7 @@ public class GardenManager : MonoBehaviour
 
         // Create water drops
         SpawnWaterDrops();
+        SpawnFlower();
 
      
         UpdatePlant();
