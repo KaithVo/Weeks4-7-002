@@ -1,53 +1,175 @@
-using System;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
-public class FloweBlooming : MonoBehaviour
+
+public class GardenManager : MonoBehaviour
 {
-    public float speed = 0.5f; //blooming speed
-    // Smallest and largest size
-    public Vector3 originalScale;
-    public Vector3 IsExpanding = new Vector3(1.5f, 1.5f, 1.5f);
+    // Plant reference
+    public Transform plant;
 
-    // Height where the flower reaches full bloom
-    public float bloomHeight = 2f;
+    // UI
+    public Slider sunlightSlider;
+    public TMP_Text growthText;
+    public TMP_Text waterText;
+    public TMP_Text timerText;
 
-    // Remember where it started
-    private float startHeight;
 
-    //time
-    public AnimationCurve curve;
-    public SpriteRenderer flowerRenderer;                       
+    // Water drop prefab
+    public GameObject waterDropPrefab;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Flower prefab
+    public GameObject flowerPrefab;
+
+
+    // Spawn positions
+    public Transform flowerSpawnPoint;
+
+
+    // Water settings
+    public int waterAmount = 10;
+    public float waterSpawnHeight = 5f;
+
+
+    // Flower settings
+    public int flowerAmount = 1;
+
+
+    // Plant data
+    private float growth = 0;
+    private int waterCount = 0;
+
+
+    // Timer
+    public float maxTime = 10f;
+    private float currentTime;
+
+
+
     void Start()
     {
-        flowerRenderer = GetComponent<SpriteRenderer>();
+        currentTime = maxTime;
 
-        //start scale
-        originalScale = transform.localScale;
-
+        UpdateUI();
     }
 
-    // Update is called once per frame
+
+
     void Update()
     {
-        // Calculate how difference the flower has moved
-        float heightDifference = transform.position.y - startHeight;
+        // Countdown timer
+        currentTime -= Time.deltaTime;
 
-        // Convert height into 0-1 value like the t/duration trick
-        float bloomProgress = heightDifference / bloomHeight;
 
-        bloomProgress = Mathf.Clamp01(bloomProgress);
-
-        //if bloom over 1f then stop
-
-        if (bloomProgress < 1f)
+        if (currentTime <= 0)
         {
-            // Move flower upward
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
+            currentTime = 0;
+
+
+            // Plant loses growth when dry
+            growth -= 5 * Time.deltaTime;
+
+            growth = Mathf.Clamp(growth, 0, 100);
+
+            UpdatePlant();
+            UpdateUI();
         }
 
-        // Grow flower smoothly
-        transform.localScale = Vector3.Lerp(originalScale, IsExpanding, curve.Evaluate(bloomProgress));
+        timerText.text = "Time: " + currentTime.ToString("F1");
+    }
+
+    // Button calls this function
+    public void WaterPlant()
+    {
+        waterCount++;
+
+        // Increase plant growth
+        growth += 10;
+
+        growth = Mathf.Clamp(growth, 0, 100);
+
+        // Reset timer
+        currentTime = maxTime;
+
+        // Create falling water
+        SpawnWaterDrops();
+
+        // Create blooming flower
+        SpawnFlower();
+
+        UpdatePlant();
+        UpdateUI();
+    }
+
+    void SpawnWaterDrops()
+    {
+        for (int i = 0; i < waterAmount; i++)
+        {
+
+            float randomX = Random.Range(-3f, 3f);
+
+
+            Vector3 spawnPosition = new Vector3(
+                randomX,
+                waterSpawnHeight,
+                0
+            );
+
+
+            GameObject water = Instantiate(
+                waterDropPrefab,
+                spawnPosition,
+                Quaternion.identity
+            );
+
+
+            Destroy(water, 3f);
+        }
+    }
+
+    void SpawnFlower()
+    {
+        Vector3 position = flowerSpawnPoint.position;
+
+
+        GameObject flower = Instantiate(
+            flowerPrefab,
+            position,
+            Quaternion.identity
+        );
+
+
+        // Remove flower after 10 seconds
+        Destroy(flower, 10f);
+    }
+
+    void UpdatePlant()
+    {
+
+        // Slider controls plant size
+        float sunlight = sunlightSlider.value / 100f;
+
+
+        float size = 0.5f +
+            (growth / 100f) * sunlight;
+
+
+        plant.localScale =
+            Vector3.one * size;
+    }
+
+    public void SliderChanged()
+    {
+        UpdatePlant();
+    }
+
+    void UpdateUI()
+    {
+        growthText.text =
+            "Growth: " + growth.ToString("F0") + "%";
+
+
+        waterText.text =
+            "Water: " + waterCount;
     }
 }
