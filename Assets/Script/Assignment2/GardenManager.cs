@@ -93,7 +93,7 @@ public class GardenManager : MonoBehaviour
 
             GameObject drop = Instantiate(waterDropPrefab, spawnPosition, Quaternion.identity);
 
-            Destroy(waterDrop, 3f); // destroy after 3s
+            Destroy(drop, 3f); // destroy after 3s
         }
     }
 
