@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloweBlooming
   speed: 0.5
-  originalScale: {x: 0, y: 0, z: 0}
+  originalScale: {x: 0.01, y: 0.01, z: 0.01}
   IsExpanding: {x: 0.1, y: 0.1, z: 0.1}
   bloomHeight: 0.5
   curve:

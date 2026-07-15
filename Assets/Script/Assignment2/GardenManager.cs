@@ -52,12 +52,9 @@ public class GardenManager : MonoBehaviour
         {
             currentTime = 0;
 
-            // Plant slowly shrinks if not watered
+            //if flower still growing
             if (growth > 0)
             {
-                growth -= 5f * Time.deltaTime;
-                growth = Mathf.Clamp(growth, 0, 100);
-
                 UpdatePlant();
                 UpdateUI();
             }
@@ -118,6 +115,9 @@ public class GardenManager : MonoBehaviour
 
         // Let FlowerBlooming handle the animation
         Destroy(flower, 8f);
+
+        //growth count goes down when flower destroyed
+        growth -= 5f;
     }
 
     //change  clider to control the groth also
@@ -132,7 +132,7 @@ public class GardenManager : MonoBehaviour
         //using the same slide value of the sky background
         float sunlightAmount = sunlightSlider.value / sunlightSlider.maxValue;
 
-        float size = 0.5f + (growth /100f) * sunlightAmount;
+        float size = 0.5f + (growth /50f) * sunlightAmount;
 
         plant.localScale = Vector3.one * size;
     }
